@@ -13,6 +13,9 @@ export default [
       "no-console": "warn",
       "no-undef": "error",
     },
+    globals: {
+      process: "readonly",
+    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
