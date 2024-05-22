@@ -2,11 +2,10 @@ import express from "express";
 import { productController } from "./product.controller";
 const router = express.Router();
 
-router.post("/create-product", productController.createProduct);
-router.get("/get-products", productController.getProducts);
-router.get("/get-product/:productID", productController.getProduct);
-router.put("/update-product/:productID", productController.updateProduct);
-router.delete("/delete-product/:productID", productController.deleteProduct);
-router.get("/search-product", productController.searchProduct);
+router.post("/products", productController.createProduct);
+router.get("/products/:productId", productController.getProducts);
+router.put("/products/:productID", productController.updateProduct);
+router.delete("/products/:productID", productController.deleteProduct);
+router.get("/products", productController.searchProduct);
 
 export const studentRoutes = router;

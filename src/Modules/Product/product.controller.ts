@@ -5,9 +5,8 @@ import { ProductSchema } from "./product.validation";
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body.product;
-    const z = ProductSchema.parse(product);
-    console.log(z);
-    const result = await productService.createProductIntoDB(product);
+    const productValidation = ProductSchema.parse(product);
+    const result = await productService.createProductIntoDB(productValidation);
     res.status(200).json({
       success: true,
       message: "Product create successfully!",
@@ -24,28 +23,12 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getProducts = async (req: Request, res: Response) => {
   try {
-    const result = await productService.getProductsFromDB();
+    const productId = req.params.productId;
+    console.log(productId);
+    const result = await productService.getProductsFromDB(productId);
     res.status(200).json({
       success: true,
-      message: "Retrive all product data!",
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong!",
-      data: error,
-    });
-  }
-};
-
-const getProduct = async (req: Request, res: Response) => {
-  try {
-    const productID = req.params.productID;
-    const result = await productService.getProductFromDB(productID);
-    res.status(200).json({
-      success: true,
-      message: "Retrive single product data!",
+      message: "Retrive product data!",
       data: result,
     });
   } catch (error) {
@@ -59,8 +42,12 @@ const getProduct = async (req: Request, res: Response) => {
 
 const updateProduct = async (req: Request, res: Response) => {
   try {
+    const updatedData = req.body;
     const productID = req.params.productID;
-    const result = await productService.updateProductIntoDB(productID);
+    const result = await productService.updateProductIntoDB(
+      productID,
+      updatedData
+    );
     res.status(200).json({
       success: true,
       message: "Update product successfully",
@@ -116,7 +103,6 @@ const searchProduct = async (req: Request, res: Response) => {
 export const productController = {
   createProduct,
   getProducts,
-  getProduct,
   updateProduct,
   deleteProduct,
   searchProduct,

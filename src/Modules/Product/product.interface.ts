@@ -17,3 +17,8 @@ export type TProduct = {
   variants: TVariants[];
   inventory: TInventory;
 };
+
+export type TUpdateFields = {
+  "inventory.quantity": number;
+  "inventory.inStock"?: boolean;
+};
