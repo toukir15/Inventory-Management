@@ -11,7 +11,7 @@ const createOrderIntoDB = async (order: TOrder) => {
   // check in collection have quantity or not and check order with collection quantity
   if (findProductQuatity && findProductQuatity >= orderQuantity) {
     const quantityCalc = findProductQuatity - orderQuantity;
-    let updateFields: TUpdateFields = {
+    const updateFields: TUpdateFields = {
       "inventory.quantity": quantityCalc,
     };
 
