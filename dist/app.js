@@ -12,6 +12,9 @@ const order_route_1 = require("./app/Modules/Order/order.route");
 const notFoundRoute_1 = require("./app/Middlewares/notFoundRoute");
 exports.app.use(express_1.default.json());
 exports.app.use((0, cors_1.default)());
+exports.app.get("/", (req, res) => {
+    res.status(200).json({ message: "server is running" });
+});
 exports.app.use("/api", product_route_1.studentRoutes);
 exports.app.use("/api", order_route_1.orderRoutes);
 exports.app.use(notFoundRoute_1.notFoundHandler);

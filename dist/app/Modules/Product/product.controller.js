@@ -34,7 +34,6 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const productId = req.params.productId;
-        console.log(productId);
         const result = yield product_service_1.productService.getProductsFromDB(productId);
         res.status(200).json({
             success: true,
