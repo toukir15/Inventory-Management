@@ -24,7 +24,6 @@ const createProduct = async (req: Request, res: Response) => {
 const getProducts = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
-    console.log(productId);
     const result = await productService.getProductsFromDB(productId);
     res.status(200).json({
       success: true,
